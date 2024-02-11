@@ -18,7 +18,7 @@ jobs:
       - run: docker buildx create --use --driver cloud vssown/dockervss
 
       - run: |
-          docker buildx build           --platform linux/amd64,linux/arm64           --push           --tag "dockervss" .          
+          docker buildx build           --platform linux/amd64,linux/arm64           --push           --tag some_tag .          
 
   # Build an image and discard the result
   build_cache:
