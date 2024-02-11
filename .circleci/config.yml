@@ -9,7 +9,7 @@ jobs:
 
       - run: |
           mkdir -vp ~/.docker/cli-plugins/
-          ARCH=amd64
+          ARCH=x86-64
           BUILDX_URL=$(curl -s https://raw.githubusercontent.com/docker/actions-toolkit/main/.github/buildx-lab-releases.json | jq -r ".latest.assets[] | select(endswith(\"linux-$ARCH\"))")
           curl --silent -L --output ~/.docker/cli-plugins/docker-buildx $BUILDX_URL
           chmod a+x ~/.docker/cli-plugins/docker-buildx          
@@ -18,7 +18,7 @@ jobs:
       - run: docker buildx create --use --driver cloud vssown/dockervss
 
       - run: |
-          docker buildx build           --platform linux/amd64,linux/arm64           --push           --tag v* .          
+          docker buildx build           --platform linux/amd64,linux/arm64           --push           --tag image .          
 
   # Build an image and discard the result
   build_cache:
